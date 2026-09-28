@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sow &amp; Tend — A garden companion for what comes next</title>
+  <meta name="description" content="Personal garden guidance shaped by your climate, conditions, plants, and timing.">
+  <meta name="theme-color" content="#f3eee3">
+  <link rel="canonical" href="https://sow-and-tend.richardortegav.chatgpt.site/">
+  <meta property="og:title" content="Sow &amp; Tend — Your Garden, Guided.">
+  <meta property="og:description" content="Personal garden guidance shaped by your climate, conditions, plants, and timing.">
+  <meta property="og:image" content="https://sow-and-tend.richardortegav.chatgpt.site/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sow-and-tend.richardortegav.chatgpt.site/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sow &amp; Tend — Your Garden, Guided.">
+  <meta name="twitter:description" content="Personal garden guidance shaped by your climate, conditions, plants, and timing.">
+  <meta name="twitter:image" content="https://sow-and-tend.richardortegav.chatgpt.site/assets/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Libre+Caslon+Display&amp;display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f3eee3'/%3E%3Ctext x='27' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23455d3b'%3ES%3C/text%3E%3Cpath d='M39 16c9 1 14 7 13 16-8 1-14-4-13-16Zm1 15c4-5 7-7 11-9' fill='none' stroke='%23455d3b' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --cream: #f3eee3;
+      --paper: #fbf8f0;
+      --green: #455d3b;
+      --green-dark: #263723;
+      --moss: #78916a;
+      --bark: #3b3128;
+      --stone: #766f64;
+      --line: rgba(59, 49, 40, .16);
+      --clay: #a76246;
+      --serif: "Libre Caslon Display", Georgia, serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--bark);
+      background: var(--cream);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .site-header {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px clamp(22px, 5vw, 72px);
+      color: #fff;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--serif);
+      font-size: 1.28rem;
+      letter-spacing: .01em;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border: 1px solid rgba(255,255,255,.62);
+      border-radius: 50%;
+      font-family: Georgia, serif;
+      font-size: .95rem;
+      font-weight: 700;
+    }
+    nav { display: flex; align-items: center; gap: 28px; }
+    nav a {
+      color: rgba(255,255,255,.9);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+    }
+    nav a:hover, nav a:focus-visible { color: #fff; }
+
+    .hero {
+      min-height: 760px;
+      display: grid;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background: var(--green-dark);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, rgba(22,34,20,.88) 0%, rgba(22,34,20,.64) 38%, rgba(22,34,20,.12) 73%),
+        linear-gradient(0deg, rgba(22,34,20,.65) 0%, transparent 35%),
+        url("assets/sow-and-tend-garden.png");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.002);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(760px, 90vw);
+      padding: 180px clamp(22px, 8vw, 112px) 92px;
+    }
+    .eyebrow {
+      margin: 0 0 20px;
+      font-size: .77rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.06; }
+    h1 { margin: 0; font-size: clamp(3.4rem, 7.2vw, 6.8rem); letter-spacing: -.035em; }
+    .hero-copy {
+      max-width: 580px;
+      margin: 28px 0 34px;
+      color: rgba(255,255,255,.9);
+      font-size: clamp(1.08rem, 1.8vw, 1.28rem);
+      line-height: 1.55;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 23px;
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--green-dark);
+      text-decoration: none;
+      font-size: .92rem;
+      font-weight: 600;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: #fff; }
+    .availability { color: rgba(255,255,255,.76); font-size: .86rem; }
+
+    main section { padding: 112px clamp(22px, 8vw, 112px); }
+    .intro {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: clamp(44px, 8vw, 130px);
+      align-items: start;
+      background: var(--paper);
+    }
+    .section-label { color: var(--green); }
+    .intro h2, .journey h2, .closing h2 {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: clamp(2.5rem, 5vw, 4.7rem);
+      letter-spacing: -.025em;
+    }
+    .intro-copy { max-width: 680px; }
+    .intro-copy > p {
+      margin: 0 0 40px;
+      font-family: var(--serif);
+      font-size: clamp(1.55rem, 2.6vw, 2.3rem);
+      line-height: 1.35;
+    }
+    .signals {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .signal { padding: 22px; background: var(--paper); }
+    .signal strong { display: block; margin-bottom: 5px; color: var(--green-dark); font-family: var(--serif); font-size: 1.14rem; }
+    .signal span { color: var(--stone); font-size: .88rem; }
+
+    .journey { background: var(--green-dark); color: #fff; }
+    .journey-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 68px;
+    }
+    .journey h2 { color: #fff; max-width: 640px; }
+    .journey-header p { max-width: 410px; margin: 0; color: rgba(255,255,255,.66); }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,.24); }
+    .step { min-height: 285px; padding: 26px 26px 30px 0; border-right: 1px solid rgba(255,255,255,.16); }
+    .step + .step { padding-left: 26px; }
+    .step:last-child { border-right: 0; }
+    .number { color: #b7c9aa; font-family: var(--serif); font-size: 1rem; }
+    .step h3 { margin: 62px 0 15px; font-size: 1.65rem; }
+    .step p { margin: 0; color: rgba(255,255,255,.68); font-size: .92rem; }
+
+    .app-preview {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(340px, 1.1fr);
+      gap: clamp(54px, 10vw, 150px);
+      align-items: center;
+      overflow: hidden;
+      background: var(--paper);
+    }
+    .preview-copy { max-width: 560px; }
+    .preview-copy h2 {
+      margin: 0 0 25px;
+      color: var(--green-dark);
+      font-size: clamp(2.5rem, 5vw, 4.7rem);
+      letter-spacing: -.025em;
+    }
+    .preview-copy > p:not(.eyebrow) { margin: 0 0 28px; color: var(--stone); font-size: 1.06rem; }
+    .preview-note {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--green-dark);
+      font-size: .92rem;
+      font-weight: 600;
+    }
+    .preview-note svg { flex: 0 0 auto; width: 24px; height: 24px; fill: none; stroke: var(--moss); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .phone-stage { position: relative; display: grid; place-items: center; min-height: 720px; }
+    .phone-stage::before {
+      content: "";
+      position: absolute;
+      width: min(520px, 100%);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #e3dfd1;
+    }
+    .phone {
+      position: relative;
+      z-index: 1;
+      width: min(360px, 82vw);
+      aspect-ratio: 390 / 844;
+      padding: 10px;
+      border: 2px solid #5a5752;
+      border-radius: 56px;
+      background: #171717;
+      box-shadow: 0 35px 70px rgba(38,55,35,.22), 0 8px 18px rgba(38,55,35,.16);
+    }
+    .phone::before {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      top: 20px;
+      left: 50%;
+      width: 104px;
+      height: 29px;
+      transform: translateX(-50%);
+      border-radius: 20px;
+      background: #080808;
+    }
+    .phone-screen { width: 100%; height: 100%; overflow: hidden; border-radius: 46px; background: var(--cream); }
+    .phone-screen img {
+      width: 112%;
+      max-width: none;
+      transform: translate(-5.4%, 0);
+    }
+    .preview-caption { position: relative; z-index: 1; margin: 18px 0 0; color: var(--stone); font-size: .78rem; text-align: center; }
+
+    .features { background: var(--cream); }
+    .feature-lead { max-width: 750px; margin-bottom: 62px; }
+    .feature-lead h2 { margin: 0 0 22px; color: var(--green-dark); font-size: clamp(2.5rem, 5vw, 4.7rem); }
+    .feature-lead p { max-width: 560px; margin: 0; color: var(--stone); font-size: 1.06rem; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feature-card {
+      min-height: 270px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: rgba(251,248,240,.65);
+    }
+    .feature-card:nth-child(2) { background: var(--green); color: #fff; }
+    .feature-card:nth-child(2) .feature-note { color: rgba(255,255,255,.7); }
+    .feature-icon { font-family: var(--serif); color: var(--moss); font-size: 1.55rem; }
+    .feature-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-card:nth-child(2) .feature-icon { color: #dce7d6; }
+    .feature-card h3 { margin: 35px 0 10px; font-size: 1.55rem; }
+    .feature-note { margin: 0; color: var(--stone); font-size: .9rem; }
+
+    .principle {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: clamp(40px, 8vw, 120px);
+      align-items: center;
+      background: var(--paper);
+    }
+    .quote {
+      margin: 0;
+      color: var(--green-dark);
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.2vw, 4rem);
+      line-height: 1.18;
+      letter-spacing: -.02em;
+    }
+    .principle-copy { border-left: 1px solid var(--line); padding-left: 36px; }
+    .principle-copy p { margin: 0 0 20px; color: var(--stone); }
+    .principle-copy strong { color: var(--green-dark); }
+
+    .closing {
+      text-align: center;
+      background: var(--clay);
+      color: #fff;
+    }
+    .closing h2 { max-width: 760px; margin: 0 auto 22px; color: #fff; }
+    .closing p { max-width: 580px; margin: 0 auto 34px; color: rgba(255,255,255,.8); }
+    .closing .button { background: var(--green-dark); color: #fff; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 34px clamp(22px, 8vw, 112px);
+      background: var(--green-dark);
+      color: rgba(255,255,255,.63);
+      font-size: .84rem;
+    }
+    footer strong { color: #fff; font-family: var(--serif); font-size: 1rem; }
+
+    @media (max-width: 900px) {
+      nav { gap: 18px; }
+      .hero { min-height: 700px; }
+      .hero::before { background-position: 61% center; }
+      .hero-content { padding-left: 26px; padding-right: 26px; }
+      .intro, .principle { grid-template-columns: 1fr; }
+      .app-preview { grid-template-columns: 1fr; }
+      .preview-copy { max-width: 680px; }
+      .phone-stage { min-height: 680px; }
+      .journey-header { display: block; }
+      .journey-header p { margin-top: 26px; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .step:nth-child(2) { border-right: 0; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-card { min-height: 220px; }
+    }
+    @media (max-width: 600px) {
+      .site-header { padding-top: 16px; }
+      .brand-mark { width: 39px; height: 39px; }
+      nav a:not(.nav-primary) { display: none; }
+      .hero { min-height: 660px; }
+      .hero::before {
+        background-image:
+          linear-gradient(90deg, rgba(22,34,20,.86), rgba(22,34,20,.42)),
+          linear-gradient(0deg, rgba(22,34,20,.72), transparent 48%),
+          url("assets/sow-and-tend-garden.png");
+        background-position: 66% center;
+      }
+      .hero-content { padding-bottom: 54px; }
+      main section { padding-top: 80px; padding-bottom: 80px; }
+      .signals { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .step, .step + .step { min-height: auto; padding: 28px 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.16); }
+      .step h3 { margin-top: 34px; }
+      .app-preview { gap: 42px; }
+      .phone-stage { min-height: 590px; }
+      .phone { width: min(310px, 88vw); }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Sow and Tend home">
+      <span class="brand-mark" aria-hidden="true">S&amp;T</span>
+      <span>Sow &amp; Tend</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#approach">Our approach</a>
+      <a href="#companion">The companion</a>
+      <a class="nav-primary" href="#coming-soon">About</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow">Your Garden, Guided.</p>
+        <h1 id="hero-title">Every garden deserves the right next step.</h1>
+        <p class="hero-copy">Sow &amp; Tend turns your plants, conditions, climate, and timing into practical guidance for the garden you actually have.</p>
+        <div class="actions">
+          <a class="button" href="#approach">See how it works</a>
+          <span class="availability">Coming soon to iPhone</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" id="approach" aria-labelledby="approach-title">
+      <div>
+        <p class="eyebrow section-label">Guidance with context</p>
+        <h2 id="approach-title">Not every garden starts in spring.</h2>
+      </div>
+      <div class="intro-copy">
+        <p>A garden begun today should not begin with a harvest reminder. Sow &amp; Tend starts with where you are—and how you want to begin.</p>
+        <div class="signals" aria-label="Personalization inputs">
+          <div class="signal"><strong>Climate</strong><span>ZIP-derived zone and recent frost history</span></div>
+          <div class="signal"><strong>Conditions</strong><span>Sunlight, soil, bed type, and protection</span></div>
+          <div class="signal"><strong>Starting point</strong><span>Seed, nursery plant, established bed, or planning</span></div>
+          <div class="signal"><strong>Your plants</strong><span>Lifecycle, spacing, maturity, and timing</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey" aria-labelledby="journey-title">
+      <div class="journey-header">
+        <h2 id="journey-title">Guidance that grows with every bed.</h2>
+        <p>Build a garden around your conditions, then open it to a plan that begins with today—not a generic calendar.</p>
+      </div>
+      <div class="steps">
+        <article class="step"><span class="number">01</span><h3>Describe the place</h3><p>Name the garden and capture the light, soil, bed type, and ZIP code that shape it.</p></article>
+        <article class="step"><span class="number">02</span><h3>Choose the plants</h3><p>Mix vegetables, fruit, flowers, shrubs, and small trees in the combinations that make sense for you.</p></article>
+        <article class="step"><span class="number">03</span><h3>Share your starting point</h3><p>Seeds or purchased plants, their size and maturity, and when you want the work to begin.</p></article>
+        <article class="step"><span class="number">04</span><h3>Start here</h3><p>See what to do today, what should wait, what you need, and the next seasonal milestone.</p></article>
+      </div>
+    </section>
+
+    <section class="app-preview" aria-labelledby="preview-title">
+      <div class="preview-copy">
+        <p class="eyebrow section-label">Inside the app</p>
+        <h2 id="preview-title">A clear place to begin.</h2>
+        <p>Each new garden opens with a focused plan for today, this week, and the season ahead—grounded in the plants, place, and starting point you chose.</p>
+        <div class="preview-note">
+          <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 24V12M14 19c-5 0-8-3-8-8 5 0 8 3 8 8ZM14 16c0-5 3-8 8-8 0 5-3 8-8 8Z"/></svg>
+          <span>Real guidance from the current Sow &amp; Tend iPhone build.</span>
+        </div>
+      </div>
+      <figure class="phone-stage">
+        <div class="phone" aria-label="Sow and Tend Start Here screen shown in a phone frame">
+          <div class="phone-screen"><img src="assets/start-here-app.png" alt="The Sow and Tend Start Here card showing what to do today, this week, and what should wait"></div>
+        </div>
+        <figcaption class="preview-caption">A focused detail from the Start Here plan.</figcaption>
+      </figure>
+    </section>
+
+    <section class="features" id="companion" aria-labelledby="companion-title">
+      <div class="feature-lead">
+        <p class="eyebrow section-label">Beyond planting day</p>
+        <h2 id="companion-title">A companion through the season.</h2>
+        <p>Practical structure when you need it, and room for the observations that only a gardener can make.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4" y="7" width="24" height="21" rx="2"/><path d="M9 4v6M23 4v6M4 13h24M10 18h4M18 18h4M10 23h4"/></svg></div><div><h3>Timely tasks</h3><p class="feature-note">Planting, watering, feeding, health checks, pruning, and harvest guidance that reflects when the bed actually began.</p></div></article>
+        <article class="feature-card"><div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 5h15l5 5v17H6zM21 5v6h5M11 16h10M11 21h10"/></svg></div><div><h3>One garden record</h3><p class="feature-note">Calendar, plan, care, plant health, seasonal progress photos, and notes—organized around each garden.</p></div></article>
+        <article class="feature-card"><div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 27V13M16 20c-6 0-10-4-10-10 6 0 10 4 10 10ZM16 16c0-6 4-10 10-10 0 6-4 10-10 10Z"/></svg></div><div><h3>Thoughtful combinations</h3><p class="feature-note">Suggestions informed by bloom succession, height, spacing, seasonality, and pest resilience.</p></div></article>
+      </div>
+    </section>
+
+    <section class="principle" aria-label="Product principle">
+      <blockquote class="quote">“Start with what matters today. See what’s next when you’re ready.”</blockquote>
+      <div class="principle-copy">
+        <p><strong>Sow &amp; Tend is being designed for beginners and experienced gardeners alike.</strong></p>
+        <p>Recommendations explain why something fits, warn when a plant may struggle, and leave the final decision with the gardener.</p>
+      </div>
+    </section>
+
+    <section class="closing" id="coming-soon" aria-labelledby="closing-title">
+      <p class="eyebrow">Growing carefully</p>
+      <h2 id="closing-title">Built to grow with you.</h2>
+      <p>We’re building the first iPhone release around reliable plant guidance, useful timing, and the realities of a living garden.</p>
+      <a class="button" href="#companion">Explore the companion</a>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Sow &amp; Tend</strong>
+    <span>Garden guidance shaped by place, plants, and timing.</span>
+    <span>&copy; <span id="year"></span> Sow &amp; Tend</span>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
