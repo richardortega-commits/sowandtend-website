@@ -1,0 +1,1 @@
+Copy index.html and the two files in assets into your sowandtend-website folder, replacing index.html and keeping all other assets. Commit and push to main to publish through Vercel. This update replaces the circular S&T monogram and browser icon with your supplied logo artwork.

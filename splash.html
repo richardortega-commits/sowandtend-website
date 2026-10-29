@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sow & Tend — Your Garden, Guided.</title>
+<meta name="description" content="A personal planting calendar shaped by your climate, your soil, and what you actually want to grow. Coming soon to iPhone.">
+<meta property="og:title" content="Sow & Tend — Your Garden, Guided.">
+<meta property="og:description" content="A personal planting calendar shaped by your climate, your soil, and what you actually want to grow. Coming soon to iPhone.">
+<meta property="og:image" content="https://sowandtend.com/assets/og-image.png">
+<meta property="og:url" content="https://sowandtend.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sow & Tend — Your Garden, Guided.">
+<meta name="twitter:description" content="A personal planting calendar shaped by your climate, your soil, and what you actually want to grow.">
+<meta name="twitter:image" content="https://sowandtend.com/assets/og-image.png">
+<link rel="canonical" href="https://sowandtend.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+<style>
+  /* Layout: single full-screen centered composition */
+  :root {
+    --bg:       #f3ede0;
+    --fg:       #1e2b18;
+    --mid:      #5a6e4a;
+    --faint:    #c8bfa8;
+    --leaf:     #3d5c2e;
+    --serif:    'Libre Caslon Display', Georgia, serif;
+    --sans:     'DM Sans', system-ui, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:    #111a0e;
+      --fg:    #e8e0d0;
+      --mid:   #8fa880;
+      --faint: #2e3d27;
+      --leaf:  #7aad62;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:    #111a0e;
+    --fg:    #e8e0d0;
+    --mid:   #8fa880;
+    --faint: #2e3d27;
+    --leaf:  #7aad62;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    padding: 48px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Background botanical illustration */
+  .bg-art {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-width: 520px;
+  }
+
+  .monogram {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 28px;
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(42px, 8vw, 68px);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--fg);
+    text-wrap: balance;
+    margin-bottom: 24px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--leaf);
+  }
+
+  .body {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--mid);
+    max-width: 380px;
+    margin-bottom: 44px;
+    text-wrap: balance;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--faint);
+    margin: 0 auto 44px;
+  }
+
+  .footer-note {
+    position: fixed;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--faint);
+    font-family: var(--sans);
+  }
+</style>
+
+<!-- Background botanical SVG -->
+<svg class="bg-art" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-width="1.5">
+    <!-- Left stem -->
+    <path d="M120 800 Q130 600 160 480 Q190 360 140 200"/>
+    <path d="M160 480 Q100 430 60 380"/>
+    <path d="M155 540 Q200 500 230 460"/>
+    <path d="M150 600 Q90 570 50 530"/>
+    <path d="M145 420 Q180 370 170 310"/>
+    <!-- Right stem -->
+    <path d="M680 800 Q670 600 640 480 Q610 360 660 200"/>
+    <path d="M640 480 Q700 430 740 380"/>
+    <path d="M645 540 Q600 500 570 460"/>
+    <path d="M650 600 Q710 570 750 530"/>
+    <path d="M655 420 Q620 370 630 310"/>
+    <!-- Top arch leaves -->
+    <path d="M400 80 Q320 120 280 200 Q340 180 400 80Z"/>
+    <path d="M400 80 Q480 120 520 200 Q460 180 400 80Z"/>
+    <path d="M400 140 Q360 190 350 260 Q390 230 400 140Z"/>
+    <path d="M400 140 Q440 190 450 260 Q410 230 400 140Z"/>
+  </g>
+</svg>
+
+<div class="wrap">
+  <!-- Monogram: S&T in circle, rendered via canvas so it uses the loaded serif font -->
+  <canvas class="monogram" id="monogram" width="128" height="128" aria-hidden="true"></canvas>
+
+  <p class="eyebrow">Coming soon to iPhone</p>
+
+  <h1>Your Garden,<br><em>Guided.</em></h1>
+
+  <div class="divider"></div>
+
+  <p class="body">Sow &amp; Tend gives you a personal planting calendar shaped by your climate, your soil, and what you actually want to grow.</p>
+
+  <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="03bfa2b4-9cb6-4b2d-b839-67c066dab844"></script>
+</div>
+
+<p class="footer-note">© 2026 Sow &amp; Tend</p>
+</body>
+</html>
+
+<script>
+  function drawMonogram() {
+    const canvas = document.getElementById('monogram');
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const size = 128;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width = '72px';
+    canvas.style.height = '72px';
+    ctx.scale(dpr, dpr);
+
+    const leaf = getComputedStyle(document.documentElement).getPropertyValue('--leaf').trim() || '#3d5c2e';
+
+    // Circle
+    ctx.beginPath();
+    ctx.arc(size/2, size/2, size/2 - 4, 0, Math.PI * 2);
+    ctx.strokeStyle = leaf;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // S&T text
+    ctx.fillStyle = leaf;
+    ctx.font = `400 38px 'Libre Caslon Display', Georgia, serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('S & T', size/2, size/2 + 2);
+  }
+
+  // Draw after fonts load
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(drawMonogram);
+  } else {
+    setTimeout(drawMonogram, 400);
+  }
+
+</script>

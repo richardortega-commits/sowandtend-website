@@ -18,7 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" href="assets/sow-and-tend-app-icon.png">
+<link rel="apple-touch-icon" href="assets/sow-and-tend-app-icon.png">
 </head>
 <body>
 <style>
@@ -91,9 +92,13 @@
     max-width: 520px;
   }
 
-  .monogram {
-    width: 72px;
-    height: 72px;
+  .brand-logo {
+    display: block;
+    width: min(380px, 100%);
+    height: auto;
+    padding: 12px;
+    background: #f3ede0;
+    border-radius: 8px;
     margin-bottom: 28px;
   }
 
@@ -176,8 +181,7 @@
 </svg>
 
 <div class="wrap">
-  <!-- Monogram: S&T in circle, rendered via canvas so it uses the loaded serif font -->
-  <canvas class="monogram" id="monogram" width="128" height="128" aria-hidden="true"></canvas>
+  <img class="brand-logo" src="assets/sow-and-tend-logo.png" alt="Sow &amp; Tend" width="1200" height="340">
 
   <p class="eyebrow">Coming soon to iPhone</p>
 
@@ -194,40 +198,3 @@
 </body>
 </html>
 
-<script>
-  function drawMonogram() {
-    const canvas = document.getElementById('monogram');
-    const ctx = canvas.getContext('2d');
-    const dpr = window.devicePixelRatio || 1;
-    const size = 128;
-    canvas.width = size * dpr;
-    canvas.height = size * dpr;
-    canvas.style.width = '72px';
-    canvas.style.height = '72px';
-    ctx.scale(dpr, dpr);
-
-    const leaf = getComputedStyle(document.documentElement).getPropertyValue('--leaf').trim() || '#3d5c2e';
-
-    // Circle
-    ctx.beginPath();
-    ctx.arc(size/2, size/2, size/2 - 4, 0, Math.PI * 2);
-    ctx.strokeStyle = leaf;
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-
-    // S&T text
-    ctx.fillStyle = leaf;
-    ctx.font = `400 38px 'Libre Caslon Display', Georgia, serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('S & T', size/2, size/2 + 2);
-  }
-
-  // Draw after fonts load
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(drawMonogram);
-  } else {
-    setTimeout(drawMonogram, 400);
-  }
-
-</script>
